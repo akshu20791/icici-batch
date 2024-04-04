@@ -1,0 +1,59 @@
+Cluster IP:
+
+ vi deployhttpd1.yml
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mydeployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: deployment1
+  template:
+    metadata:
+      name: testp1
+      labels:
+        name: deployment1
+    spec:
+      containers:
+        - name: c00
+          image: httpd
+          ports:
+            - containerPort: 80
+
+
+kubectl apply -f deployhttpd1.yml
+
+
+vi service.yml
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: demoservices
+spec:
+  ports:
+    - port: 8080
+      targetPort: 80
+  selector:
+    name: deployment1
+  type: ClusterIP
+
+
+
+kubectl apply -f service.yml
+
+kubectl get svc
+
+copy the ip address of the demoservices
+
+
+curl <<ip address of demoservices>>:8080
+o/p it works 
+
+
+
+
+
