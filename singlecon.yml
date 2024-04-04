@@ -1,0 +1,34 @@
+vi singlecon.yml 
+(press i to start inserting)
+
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+ name: tes. tpod
+spec:
+  containers:
+    - name: c00
+      image: ubuntu
+      command: ["/bin/bash","-c", "while true; do echo hello world; sleep 10; done"]
+
+
+
+
+(press esc :wq to save and quit) 
+
+####SINGLE CONTAINER LAB COMMANDS
+
+
+kubectl apply -f singlecon.yml     #execute the singlecontainer.yml file 
+
+kubectl get pods    #get the list of the pods
+
+
+kubectl get pods -o wide    #get the list of the pods with other detaisl like ip of the pod and in which node it is created
+
+kubectl logs -f testpod     # give hello akshat as output to come out of it press ctrl c
+
+kubectl get nodes   # wull give the nodes list
+
